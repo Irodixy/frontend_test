@@ -10,9 +10,12 @@
             <div class="nav-item">
                 <RouterLink to="/request">Request</RouterLink>
             </div>
-            <div class="nav-item">
-                <RouterLink to="/about">About</RouterLink>
-            </div>
         </div>
     </nav>
 </template>
+
+<style lang="scss">
+@use "../styles/abstracts/index.scss" as *;
+@use "../styles/layout/index.scss" as layout;
+@use "../styles/components/index.scss" as comp;
+</style>
