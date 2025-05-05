@@ -1,0 +1,109 @@
+@use '../abstracts/index' as *;
+
+nav#main-navbar {
+    height: $navbar-height;
+    background-color: $color-bg;
+    padding: 0 $spacing-lg;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    @include flex-center(space-between);
+
+    .hamburger {
+        display: block;
+        width: 30px;
+        height: 24px;
+        position: relative;
+        cursor: pointer;
+        z-index: 1100;
+
+        span {
+            background: $color-text;
+            height: 3px;
+            width: 100%;
+            position: absolute;
+            left: 0;
+            transition: 0.3s ease;
+
+            &:nth-child(1) {
+                top: 0;
+            }
+
+            &:nth-child(2) {
+                top: 10px;
+            }
+
+            &:nth-child(3) {
+                top: 20px;
+            }
+        }
+
+        &.open {
+            span:nth-child(1) {
+                transform: rotate(45deg);
+                top: 10px;
+            }
+
+            span:nth-child(2) {
+                opacity: 0;
+            }
+
+            span:nth-child(3) {
+                transform: rotate(-45deg);
+                top: 10px;
+            }
+        }
+    }
+
+    .nav-group {
+        display: none;
+        position: absolute;
+        top: $navbar-height;
+        right: 0;
+        flex-direction: column;
+        background: $color-bg;
+        width: 100%;
+        padding: $spacing-md 0;
+        gap: 0;
+        z-index: 1050;
+
+        &.open {
+            display: flex;
+        }
+
+        .nav-item {
+            @include clickable;
+            padding: $spacing-md;
+            text-align: center;
+            text-transform: uppercase;
+            color: $color-text;
+
+            &:hover,
+            &.active {
+                color: $color-accent;
+            }
+        }
+    }
+
+    @media (min-width: $breakpoint-tablet) {
+        .hamburger {
+            display: none;
+        }
+
+        .nav-group {
+            position: static;
+            display: flex !important;
+            flex-direction: row;
+            align-items: center;
+            gap: $spacing-md;
+            background: none;
+            width: auto;
+            padding: 0;
+
+            .nav-item {
+                padding: $spacing-md;
+                text-align: left;
+            }
+        }
+    }
+}

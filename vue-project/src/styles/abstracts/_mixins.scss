@@ -1,0 +1,42 @@
+@use "./_variables.scss" as *;
+
+@mixin transition($prop) {
+    transition: $prop 0.3s ease;
+}
+
+@mixin slider-window {
+    position: relative;
+    overflow: hidden;
+}
+
+@mixin button-reset {
+    padding: 0; // elimina preenchimento padrão               :contentReference[oaicite:6]{index=6}
+    margin: 0; // elimina margem padrão                       :contentReference[oaicite:7]{index=7}
+    border: none; // remove borda                                 :contentReference[oaicite:8]{index=8}
+    background: transparent; // fundo transparente                          :contentReference[oaicite:9]{index=9}
+    font: inherit; // herda família e tamanho de fonte             :contentReference[oaicite:10]{index=10}
+    color: inherit; // herda cor do texto                           :contentReference[oaicite:11]{index=11}
+    cursor: pointer; // cursor de botão                             :contentReference[oaicite:12]{index=12}
+    outline: none; // remove outline                               
+}
+
+/// Transições suaves
+/// @param $properties List of CSS properties or a single property
+/// @param $duration    Tempo em segundos (default: 0.3s)
+/// @param $timing      Função de timing (default: ease-in-out)
+@mixin transition($properties, $duration: 0.3s, $timing: ease-in-out) {
+    transition: $properties $duration $timing;
+}
+
+
+@mixin flex-center($justify: center) {
+    display: flex;
+    align-items: center;
+    justify-content: $justify;
+}
+
+@mixin clickable {
+    cursor: pointer;
+    transition: color $transition-fast, background $transition-fast;
+    user-select: none;
+}
