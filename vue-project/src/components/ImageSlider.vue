@@ -1,3 +1,13 @@
+<!-- <style lang="scss">
+@use "../scss/abstracts/index" as *;
+@use "../scss/layout/index" as layout;
+@use "../scss/components/index" as comp;
+
+.image-slider {
+    @include slider-window;
+}
+</style> -->
+
 <template>
     <div class="image-slider">
         <div class="slider-window" ref="sliderWindow" @mousedown="startDrag" @touchstart="startDrag" @mouseup="endDrag"
@@ -107,13 +117,3 @@ onUnmounted(() => {
     if (timer.value) clearInterval(timer.value)
 })
 </script>
-
-<style lang="scss">
-@use "../styles/abstracts/index" as *;
-@use "../styles/layout/index" as layout;
-@use "../styles/components/index" as comp;
-
-.image-slider {
-    @include slider-window;
-}
-</style>

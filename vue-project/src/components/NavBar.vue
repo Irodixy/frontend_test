@@ -1,3 +1,9 @@
+<!-- <style lang="scss">
+@use "../scss/abstracts/index.scss" as *;
+@use "../scss/layout/index.scss" as layout;
+@use "../scss/components/index.scss" as comp;
+</style> -->
+
 <template>
     <nav id="main-navbar">
         <div class="nav-group">
@@ -13,9 +19,3 @@
         </div>
     </nav>
 </template>
-
-<style lang="scss">
-@use "../styles/abstracts/index.scss" as *;
-@use "../styles/layout/index.scss" as layout;
-@use "../styles/components/index.scss" as comp;
-</style>

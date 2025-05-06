@@ -36,8 +36,8 @@ function loadMore() {
 }
 </script>
 
-<style lang="scss" scoped>
-@use '@/styles/abstracts/index' as *; // variáveis e mixins
+<!-- <style lang="scss" scoped>
+@use '@/scss/abstracts/index' as *; // variáveis e mixins
 
 .text-image-combo {
     display: flex;
@@ -90,4 +90,4 @@ function loadMore() {
 
     // :contentReference[oaicite:8]{index=8}
 }
-</style>
+</style> -->
