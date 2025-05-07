@@ -1,0 +1,22 @@
+@use '../abstracts/index' as *;
+
+html {
+    background-color: gray;
+    color: white;
+}
+
+body {
+    background-color: $color-bg;
+}
+
+a {
+    text-decoration: none;
+
+    a:link {}
+
+    a:visited {}
+
+    a:hover {}
+
+    a:active {}
+}

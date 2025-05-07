@@ -12,9 +12,9 @@ export default defineConfig({
       scss: {
         additionalData: `
           @use "@/scss/main.scss" as *;
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   resolve: {
     alias: {

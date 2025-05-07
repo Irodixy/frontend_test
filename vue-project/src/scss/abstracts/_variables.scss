@@ -1,8 +1,8 @@
 @use "sass:color";
 
 // Cores
-$color-primary: #000000 !default; // cor principal: preto            :contentReference[oaicite:14]{index=14}
-$color-secondary: #ffffff !default; // texto sobre fundo preto           :contentReference[oaicite:15]{index=15}
+$color-primary: #000000 !default;
+$color-secondary: #ffffff !default;
 
 // Tipografia
 $font-family-base: 'Inter', sans-serif !default;
@@ -23,9 +23,9 @@ $spinner-size: 40px;
 $breakpoint-tablet: 1024px;
 $breakpoint-mobile: 600px;
 
-$color-bg: #ffffff;
-$color-text: #222222;
-$color-accent: #0077ff;
+$color-bg: $color-primary;
+$color-text: #eeeeee;
+$color-accent: #777777;
 $color-hover: color.scale($color-accent, $lightness: -10%);
 $spacing-md: 1rem;
 $spacing-lg: 2rem;

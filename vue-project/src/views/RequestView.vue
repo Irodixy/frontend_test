@@ -5,7 +5,7 @@ import PublicAPIPlusFilter from '../components/PublicAPIPlusFilter.vue'
 
 <template>
     <div class="request">
-        <h1>:O</h1>
+        <h1 style="color: white">:O</h1>
     </div>
     <PublicAPIPlusFilter />
 </template>

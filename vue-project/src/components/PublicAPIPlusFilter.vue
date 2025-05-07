@@ -25,3 +25,9 @@ async function onSearch({ year, query }: { year: string; query: string }) {
     drivers.value = data.drivers || data.driver
 }
 </script>
+
+<style>
+body {
+    color: black;
+}
+</style>
