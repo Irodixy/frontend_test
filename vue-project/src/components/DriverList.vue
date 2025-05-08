@@ -19,28 +19,39 @@ interface AccordionData {
 const props = defineProps<{
     drivers: Driver[];
     year?: string;
+    sortOrder: string;
 }>()
 const items = ref<AccordionData[]>([])
 watch(
     () => props.drivers,
     (drivers) => {
         if (drivers && drivers.length) {
-            items.value = drivers
-                // opcional: ordena alfabeticamente
-                .sort((a, b) => a.name.localeCompare(b.name))
-                .map((d) => ({
-                    id: d.driverId,
-                    title: `${d.name} ${d.surname}`
-                }))
+            updateItems(drivers)
         } else {
             items.value = []  // mantém vazio se não houver drivers
         }
     },
     { immediate: true }
 )
+
+function updateItems(drivers: Driver[]) {
+    items.value = drivers
+        .sort((a, b) => {
+            if (props.sortOrder === 'asc') {
+                return a.name.localeCompare(b.name)
+            } else {
+                return b.name.localeCompare(a.name)
+            }
+        })
+        .map((d) => ({
+            id: d.driverId,
+            title: `${d.name} ${d.surname}`,
+        }))
+}
+
 const pagination = ref ({
     enabled: true,
-    itemsPerPage: 6,
+    itemsPerPage: 10,
 })
 
 async function handleOpen(driverId: string) {
@@ -59,33 +70,4 @@ async function handleOpen(driverId: string) {
 
     items.value[idx].details = props.year ? data.driver : data.driver[0]
 }
-
-// // Function to organize data
-// function prepareData(drivers: Driver[]) {
-//     // Example: Sort drivers alphabetically by name
-//     return drivers.sort((a, b) => a.name.localeCompare(b.name))
-// }
-
-// // Watch for changes to the `drivers` prop
-// watch(
-//     () => props.drivers,
-//     (newDrivers) => {
-//         if (newDrivers) {
-//             const organizedDrivers = prepareData(newDrivers)
-//             console.log('Organized Drivers:', organizedDrivers)
-//         }
-//     },
-//     { immediate: true } // Trigger the watcher immediately on component mount
-// )
-
-// async function loadDetails(id: string) {
-//     if (details.value[id]) return
-//     const path = props.year
-//         ? `https://f1api.dev/api/${props.year}/drivers/${id}`
-//         : `https://f1api.dev/api/drivers/${id}`
-//     const res = await fetch(path)
-//     const data = await res.json()
-
-//     details.value[id] = props.year ? data.driver : data.driver[0]
-// }
 </script>

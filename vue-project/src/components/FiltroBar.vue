@@ -6,7 +6,14 @@
                 {{ s.year }}
             </option>
         </select>
+
         <input type="text" v-model="query" placeholder="Pesquisar piloto" />
+
+        <select v-model="sortOrder">
+            <option value="asc">A to Z</option>
+            <option value="desc">Z to A</option>
+        </select>
+        
         <button type="submit">Buscar</button>
     </form>
 </template>
@@ -16,6 +23,7 @@ interface Season { year: number }
 const seasons = ref<Season[]>([])
 const year = ref<string>('')
 const query = ref<string>('')
+const sortOrder = ref<'asc' | 'desc'>('asc')
 
 // 1) Carrega anos
 onMounted(async () => {
@@ -26,9 +34,9 @@ onMounted(async () => {
 
 // 2) Emite evento ao submeter
 const emit = defineEmits<{
-    (e: 'search', payload: { year: string; query: string }): void
+    (e: 'search', payload: { year: string; query: string; sortOrder: 'asc' | 'desc' }): void
 }>()
 function onSearch() {
-    emit('search', { year: year.value, query: query.value })
+    emit('search', { year: year.value, query: query.value, sortOrder: sortOrder.value })
 }
 </script>

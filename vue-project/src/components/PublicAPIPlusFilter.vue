@@ -1,16 +1,24 @@
 <template>
     <FiltroBar @search="onSearch" />
-    <DriverList :drivers="drivers" :year="filter.year" />
+    <DriverList :drivers="drivers" :year="filter.year" :sortOrder="filter.sortOrder" />
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
 import FiltroBar from './FiltroBar.vue'
 import DriverList from './DriverList.vue'
 const drivers = ref<any[]>([])
-const filter = ref<{ year: string; query: string }>({ year: '', query: '' })
+const filter = ref<{ 
+    year: string; 
+    query: string; 
+    sortOrder: string 
+}>({ 
+        year: '', 
+        query: '', 
+        sortOrder: 'asc' 
+    })
 
-async function onSearch({ year, query }: { year: string; query: string }) {
-    filter.value = { year, query }
+async function onSearch({ year, query, sortOrder }: { year: string; query: string; sortOrder: string }) {
+    filter.value = { year, query, sortOrder }
     const base = 'https://f1api.dev/api'
     let url: string
     if (query) {

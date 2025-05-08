@@ -163,4 +163,29 @@ function prevPage() {
     /* valor suficiente para o conteúdo */
     opacity: 1;
 }
+
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 1rem;
+
+    button {
+        padding: 0.5rem 1rem;
+        border: 1px solid #ddd;
+        background: #f5f5f5;
+        cursor: pointer;
+        border-radius: 4px;
+
+        &:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+    }
+
+    span {
+        font-weight: bold;
+    }
+}
 </style>
