@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
 import ImageSlider from '../components/ImageSlider.vue'
 import TextImageCombo from '../components/TextImageCombo.vue'
 

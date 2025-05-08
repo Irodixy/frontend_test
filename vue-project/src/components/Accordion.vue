@@ -1,6 +1,6 @@
 <template>
     <ul class="accordion">
-        <li v-for="(item, i) in items" :key="item.id">
+        <li v-for="(item, i) in paginatedItems" :key="item.id">
             <div class="accordion-header" :class="{ open: openIndex === i }" @click="toggle(i, item.id)">
                 <span class="icon">
                     {{ openIndex === i ? '−' : '+' }}
@@ -25,10 +25,16 @@
             </transition>
         </li>
     </ul>
+
+    <div v-if="totalPages > 1" class="pagination-controls">
+        <button @click="prevPage" :disabled="currentPage === 0">← Previous</button>
+        <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+        <button @click="nextPage" :disabled="currentPage === totalPages - 1">Next →</button>
+    </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 interface AccordionData {
     id: string
@@ -38,6 +44,10 @@ interface AccordionData {
 
 const props = defineProps<{
     items: AccordionData[]
+    pagination?: {
+        enabled: boolean,
+        itemsPerPage: number
+    }
 }>()
 
 const emit = defineEmits<{
@@ -47,6 +57,27 @@ const emit = defineEmits<{
 // 2) Índice aberto (ou null)
 const openIndex = ref<number | null>(null)
 
+// Pagination variables
+const currentPage = ref(0) // Current page index
+const paginationEnabled = computed(() => props.pagination?.enabled || false) // Default to false
+const itemsPerPage = computed(() => props.pagination?.itemsPerPage || 10) // Default to 10 items per page
+
+const paginatedItems = computed(() => {
+    if (paginationEnabled.value) {
+        const start = currentPage.value * itemsPerPage.value
+        const end = start + itemsPerPage.value
+        return props.items.slice(start, end)
+    }
+    return props.items
+})
+
+const totalPages = computed(() => {
+    if (paginationEnabled.value) {
+        return Math.ceil(props.items.length / itemsPerPage.value)
+    }
+    return 1
+})
+
 // 3) Função que abre/fecha e dispara loadDetails
 function toggle(idx: number, id: string) {
     if (openIndex.value === idx) {
@@ -54,6 +85,18 @@ function toggle(idx: number, id: string) {
     } else {
         openIndex.value = idx
         emit('open', id)
+    }
+}
+
+function nextPage() {
+    if (currentPage.value < totalPages.value - 1) {
+        currentPage.value++
+    }
+}
+
+function prevPage() {
+    if (currentPage.value > 0) {
+        currentPage.value--
     }
 }
 </script>

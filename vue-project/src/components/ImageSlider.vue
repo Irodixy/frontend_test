@@ -1,13 +1,3 @@
-<!-- <style lang="scss">
-@use "../scss/abstracts/index" as *;
-@use "../scss/layout/index" as layout;
-@use "../scss/components/index" as comp;
-
-.image-slider {
-    @include slider-window;
-}
-</style> -->
-
 <template>
     <div class="image-slider">
         <div class="slider-window" ref="sliderWindow" @mousedown="startDrag" @touchstart="startDrag" @mouseup="endDrag"
@@ -43,7 +33,7 @@ if (urls.length === 0) {
     let defaultUrl = Object.values(import.meta.glob(
         '/src/assets/images/*.{png,jpg,jpeg,svg,avif}', { eager: true, import: 'default' }
     ))[0]
-    urls = [defaultUrl]
+    urls = [defaultUrl as string]
 }
 
 const images = ref(urls.map((url) => ({ src: url })))
@@ -117,3 +107,9 @@ onUnmounted(() => {
     if (timer.value) clearInterval(timer.value)
 })
 </script>
+
+<style lang="scss" scoped> //scope = only for this script
+    img {
+        object-fit: contain !important;
+    }
+</style>

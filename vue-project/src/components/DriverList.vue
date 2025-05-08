@@ -1,18 +1,5 @@
 <template>
-    <!-- <ul>
-        <li v-for="driver in drivers" :key="driver.driverId">
-            {{ driver.name }} {{ driver.surname }}
-            <button @click="loadDetails(driver.driverId)">
-                Ver Detalhes
-            </button>
-            <div v-if="details[driver.driverId]">
-                <p>Nacionalidade: {{ details[driver.driverId].nationality }}</p>
-                <p>Aniversário: {{ details[driver.driverId].birthday }}</p>
-            </div>
-        </li>
-    </ul> -->
-
-    <Accordion :items="items" @open="handleOpen" />
+    <Accordion :items="items" :pagination="pagination" @open="handleOpen" />
 </template>
 <script setup lang="ts">
 import { ref, watch } from 'vue'
@@ -31,15 +18,9 @@ interface AccordionData {
 
 const props = defineProps<{
     drivers: Driver[];
-    year?: int
+    year?: string;
 }>()
 const items = ref<AccordionData[]>([])
-// const items = ref<AccordionData[]>(
-//     props.drivers.map(d => ({
-//         id: d.driverId,
-//         title: `${d.name} ${d.surname}`,
-//     }))
-// )
 watch(
     () => props.drivers,
     (drivers) => {
@@ -50,7 +31,6 @@ watch(
                 .map((d) => ({
                     id: d.driverId,
                     title: `${d.name} ${d.surname}`
-                    // details fica undefined até abrir o acordeão
                 }))
         } else {
             items.value = []  // mantém vazio se não houver drivers
@@ -58,8 +38,10 @@ watch(
     },
     { immediate: true }
 )
-
-const details = ref<Record<string, any>>({})
+const pagination = ref ({
+    enabled: true,
+    itemsPerPage: 6,
+})
 
 async function handleOpen(driverId: string) {
     const idx = items.value.findIndex((i) => i.id === driverId)
