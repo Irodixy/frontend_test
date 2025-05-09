@@ -112,4 +112,7 @@ onUnmounted(() => {
     img {
         object-fit: contain !important;
     }
+    .slider-window {
+        touch-action: pan-y;
+    }
 </style>

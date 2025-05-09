@@ -1,6 +1,6 @@
 <template>
     <section class="text-image-combo">
-        <div v-for="(item, idx) in displayedItems" :key="idx" class="combo-row" :class="{ 'reverse': idx % 2 === 1 }">
+        <div v-for="item in displayedItems" class="combo-row">
             <div class="txt">{{ item.text }}</div>
             <div class="img"><img :src="item.src" alt="" /></div>
         </div>
@@ -36,7 +36,7 @@ function loadMore() {
 }
 </script>
 
-<!-- <style lang="scss" scoped>
+<style lang="scss" scoped>
 @use '@/scss/abstracts/index' as *; // variáveis e mixins
 
 .text-image-combo {
@@ -50,8 +50,11 @@ function loadMore() {
         align-items: center;
         gap: 1rem;
 
-        // Alterna a direção: texto→imagem ou imagem→texto
-        &.reverse {
+        &:nth-child(odd) {
+        flex-direction: row;
+        }
+
+        &:nth-child(even) {
             flex-direction: row-reverse;
         }
 
@@ -64,6 +67,7 @@ function loadMore() {
 
             img {
                 width: 100%;
+                height: auto;
                 display: block;
             }
         }
@@ -71,23 +75,10 @@ function loadMore() {
 
     .show-more {
         @include button-reset; // mixin para limpar o botão
+        margin-top: 1.5rem;
         align-self: center;
         padding: 0.5rem 1rem;
         cursor: pointer;
     }
 }
-
-// Alternativa CSS puro usando nth-child
-.text-image-combo {
-    .combo-row:nth-child(odd) {
-        flex-direction: row;
-    }
-
-    // :contentReference[oaicite:7]{index=7}
-    .combo-row:nth-child(even) {
-        flex-direction: row-reverse;
-    }
-
-    // :contentReference[oaicite:8]{index=8}
-}
-</style> -->
+</style>
