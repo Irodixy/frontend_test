@@ -82,6 +82,8 @@ function resetTimer() {
 function startDrag(event: MouseEvent | TouchEvent) {
     isDragging.value = true
     startX.value = 'touches' in event ? event.touches[0].clientX : event.clientX
+
+    if (timer.value) clearInterval(timer.value)
 }
 
 function onDrag(event: MouseEvent | TouchEvent) {
