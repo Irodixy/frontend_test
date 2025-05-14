@@ -1,12 +1,14 @@
 @use '../abstracts/index' as *;
 
 html {
-    background-color: gray;
+    background-color: $color-bg;
     color: white;
 }
 
 body {
-    background-color: $color-bg;
+    padding: 0 40px;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
 }
 
 a {

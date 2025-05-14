@@ -12,8 +12,8 @@
             </div>
         </div>
 
-        <button class="nav prev" @click="prevSlide">‹</button>
-        <button class="nav next" @click="nextSlide">›</button>
+        <button class="btn prev" @click="prevSlide">‹</button>
+        <button class="btn next" @click="nextSlide">›</button>
     </div>
 </template>
 
@@ -111,8 +111,24 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" scoped> //scope = only for this script
+    .image-slider {
+        //height: 1vh;
+        display: flex;
+
+    }
+    
     img {
         object-fit: contain !important;
+        height: auto;
+    }
+
+    .btn {
+        .prev {
+
+        }
+        .next {
+            
+        }
     }
     .slider-window {
         touch-action: pan-y;

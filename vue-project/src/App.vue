@@ -1,6 +1,10 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { useRoute, RouterView } from 'vue-router'
 import NavBar from './components/NavBar.vue'
+const route = useRoute()
+
+// Define routes where the NavBar should be hidden
+const hiddenNavRoutes = ['/immera']
 </script>
 
 <style lang="scss">
@@ -8,7 +12,7 @@ import NavBar from './components/NavBar.vue'
 </style>
 
 <template>
-  <header>
+  <header v-if="!hiddenNavRoutes.includes(route.path)">
     <NavBar />
   </header>
 

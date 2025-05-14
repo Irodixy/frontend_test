@@ -19,6 +19,11 @@ const router = createRouter({
       name: 'request',
       component: () => import('../views/RequestView.vue'),
     },
+    {
+      path: '/immera',
+      name: 'immera',
+      component: () => import('../views/ImmeraView.vue'),
+    },
   ],
 })
 
