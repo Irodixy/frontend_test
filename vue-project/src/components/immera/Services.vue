@@ -1,5 +1,5 @@
 <template>
-    <div class="title">Customer Service</div>
+    <div id="services" class="title">Customer Service</div>
     <div class="custom-services">
         <div class="services" v-for="(service) in services">
             <div class="square"></div>
