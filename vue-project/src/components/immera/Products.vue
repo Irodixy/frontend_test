@@ -1,13 +1,13 @@
 <template>
     <div id="products">
         <div class="main-title">Our Suite of Products</div>
-        <div class="product" v-for="(product) in products">
+        <div class="product" v-for="(product) in products" :key="product.id" :id="product.id">
             <div class="background-decoration"></div>
             <div class="product-example">
                 <img src="../../assets/images/immera/products/support_image.png" alt="">
             </div>
             <div class="details">
-                <div :id=product.id class="title">
+                <div class="title">
                     <img v-if="product.title[1] !== null" :src=product.title[1] alt="">
                     <h2 v-else-if="product.title[0]">{{ product.title[0] }}</h2>
                 </div>
