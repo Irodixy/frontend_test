@@ -9,8 +9,7 @@
                 <div class="dropdown-icon">v</div>
                 <div class="dropdown-menu">
                         <a href="#brightnow">Brightnow</a>
-                        <a href="#product2">Product 2</a>
-                        <a href="#product3">Product 3</a>
+                        <a href="#onecore">OneCore</a>
                     </div>
             </div>
             

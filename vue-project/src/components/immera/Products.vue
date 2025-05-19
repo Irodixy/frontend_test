@@ -7,7 +7,7 @@
                 <img src="../../assets/images/immera/products/support_image.png" alt="">
             </div>
             <div class="details">
-                <div class="title">
+                <div :id=product.id class="title">
                     <img v-if="product.title[1] !== null" :src=product.title[1] alt="">
                     <h2 v-else-if="product.title[0]">{{ product.title[0] }}</h2>
                 </div>
@@ -30,6 +30,7 @@
 import { ref } from 'vue';
 
 interface Product {
+        id: string;
         title: 
         [
             content: string | null,
@@ -43,11 +44,13 @@ const hover = ref(false);
 
 const products: Product[] = [
     {
+        id: "brightnow",
         title: [null, "/src/assets/images/immera/products/brightnow.svg"],
         subtitle: 'Service and Maintenance',
         description: 'A modular platform designed to streamline field service and maintenance workflows. Includes ticketing, video support with AR, real-time chat, task tracking, scheduling, and knowledge libraries – all in one place.',
     },
     {
+        id: "onecore",
         title: ['OneCore', null],
         subtitle: 'Smart Facilities Management',
         description: 'Organize and monitor your physical assets and IoT devices. OneCore enables scheduling, rule-based automation, device integration (DALI, DMX, PJLink, Shelly), and upcoming digital signage and event-driven automation.',

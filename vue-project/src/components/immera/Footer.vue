@@ -8,8 +8,7 @@
                 <div class="products">
                     <div class="title">Products</div>
                     <a href="#brightnow">BrightNow</a>
-                    <a href="">Product 2</a>
-                    <a href="">Product 3</a>
+                    <a href="#onecore">OneCore</a>
                 </div>
                 <div class="services">
                     <div class="title">Services</div>
